@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dashboardSchede.Table">
+   <children>
+      <Pane fx:id="secondPane" layoutX="262.0" layoutY="154.0" prefHeight="667.0" prefWidth="999.0">
+         <children>
+            <TableView fx:id="scheda" layoutX="14.0" layoutY="28.0" prefHeight="611.0" prefWidth="979.0" stylesheets="@style.css">
+              <columns>
+                <TableColumn fx:id="esercizio" prefWidth="209.0" text="ESERCIZIO" />
+                <TableColumn fx:id="serie" minWidth="5.0" prefWidth="57.0" text="SERIE" />
+                  <TableColumn fx:id="ripetizioni" prefWidth="85.0" text="RIPETIZIONI" />
+                  <TableColumn fx:id="recupero" text="RECUPERO" />
+                  <TableColumn fx:id="note" prefWidth="213.0" text="NOTE " />
+                  <TableColumn fx:id="carico" prefWidth="107.0" text="ULTIMO CARICO " />
+                  <TableColumn fx:id="muscolo" prefWidth="155.0" text="MUSCOLO" />
+                  <TableColumn fx:id="giorno" prefWidth="85.0" text="GIORNO" />
+              </columns>
+            </TableView>
+         </children></Pane>
+      <ComboBox layoutX="87.0" layoutY="154.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>
