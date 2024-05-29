@@ -21,7 +21,7 @@ public class Scheda {
 	//METODI
 	
 	//COSTRUTTORE
-	Scheda(String esercizio, String serie, String ripetizioni, String recupero, String note, String carico, String giorno)
+	Scheda(String esercizio, String serie, String ripetizioni, String recupero, String note, String carico, String giorno, String muscolo)
 	{
 		this.esercizio = new SimpleStringProperty(esercizio);
 		this.serie = new SimpleStringProperty(serie);
@@ -30,12 +30,13 @@ public class Scheda {
 		this.note = new SimpleStringProperty(note);
 		this.carico = new SimpleStringProperty(carico);
 		this.giorno = new SimpleStringProperty(giorno);
+		this.muscolo =  new SimpleStringProperty(muscolo);
 	}
 	
 	Scheda(){}
 
 	public String getEsercizio() {
-		return esercizio.toString();
+		return esercizio.getValue();
 	}
 
 	public void setEsercizio(String esercizio) {
@@ -43,7 +44,7 @@ public class Scheda {
 	}
 
 	public String getSerie() {
-		return serie.toString();
+		return serie.getValue();
 	}
 
 	public void setSerie(String serie) {
@@ -51,7 +52,7 @@ public class Scheda {
 	}
 
 	public String getRipetizioni() {
-		return ripetizioni.toString();
+		return ripetizioni.getValue();
 	}
 
 	public void setRipetizioni(String ripetizioni) {
@@ -59,7 +60,7 @@ public class Scheda {
 	}
 
 	public String getRecupero() {
-		return recupero.toString();
+		return recupero.getValue();
 	}
 
 	public void setRecupero(String recupero) {
@@ -67,7 +68,7 @@ public class Scheda {
 	}
 
 	public String getNote() {
-		return note.toString();
+		return note.getValue();
 	}
 
 	public void setNote(String note) {
@@ -75,7 +76,7 @@ public class Scheda {
 	}
 
 	public String getCarico() {
-		return carico.toString();
+		return carico.getValue();
 	}
 
 	public void setCarico(String carico) {
@@ -83,7 +84,7 @@ public class Scheda {
 	}
 
 	public String getGiorno() {
-		return giorno.toString();
+		return giorno.getValue();
 	}
 
 	public void setGiorno(String giorno) {
@@ -91,7 +92,7 @@ public class Scheda {
 	}
 	
 	public String getMuscolo() {
-		return serie.toString();
+		return muscolo.getValue();
 	}
 
 	public void setMuscolo(String muscolo) {

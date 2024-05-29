@@ -6,23 +6,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dashboardSchede.Table">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dashboardSchede.DashboardListener">
    <children>
-      <Pane fx:id="secondPane" layoutX="262.0" layoutY="154.0" prefHeight="667.0" prefWidth="999.0">
+      <Pane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
-            <TableView fx:id="scheda" layoutX="14.0" layoutY="28.0" prefHeight="611.0" prefWidth="979.0" stylesheets="@style.css">
+            <TableView fx:id="scheda" layoutX="231.0" layoutY="145.0" onMouseClicked="#gestioneClick" prefHeight="611.0" prefWidth="979.0" stylesheets="@style.css">
               <columns>
-                <TableColumn fx:id="esercizio" prefWidth="209.0" text="ESERCIZIO" />
-                <TableColumn fx:id="serie" minWidth="5.0" prefWidth="57.0" text="SERIE" />
-                  <TableColumn fx:id="ripetizioni" prefWidth="85.0" text="RIPETIZIONI" />
-                  <TableColumn fx:id="recupero" text="RECUPERO" />
-                  <TableColumn fx:id="note" prefWidth="213.0" text="NOTE " />
-                  <TableColumn fx:id="carico" prefWidth="107.0" text="ULTIMO CARICO " />
-                  <TableColumn fx:id="muscolo" prefWidth="155.0" text="MUSCOLO" />
-                  <TableColumn fx:id="giorno" prefWidth="85.0" text="GIORNO" />
+                <TableColumn fx:id="esercizio" editable="false" prefWidth="209.0" resizable="false" sortable="false" text="ESERCIZIO" />
+                <TableColumn fx:id="serie" editable="false" minWidth="5.0" prefWidth="57.0" resizable="false" sortable="false" text="SERIE" />
+                  <TableColumn fx:id="ripetizioni" editable="false" prefWidth="85.0" resizable="false" sortable="false" text="RIPETIZIONI" />
+                  <TableColumn fx:id="recupero" editable="false" resizable="false" sortable="false" text="RECUPERO" />
+                  <TableColumn fx:id="note" editable="false" prefWidth="213.0" resizable="false" sortable="false" text="NOTE " />
+                  <TableColumn fx:id="carico" editable="false" prefWidth="107.0" resizable="false" sortable="false" text="ULTIMO CARICO " />
+                  <TableColumn fx:id="muscolo" editable="false" prefWidth="155.0" resizable="false" sortable="false" text="MUSCOLO" />
+                  <TableColumn fx:id="giorno" editable="false" prefWidth="72.0" resizable="false" sortable="false" text="GIORNO" />
               </columns>
             </TableView>
+            <ComboBox fx:id="other" layoutX="41.0" layoutY="145.0" onHiding="#fillSpecificTable" onShowing="#fillOptionSchede" prefWidth="150.0" promptText="ALTRE SCHEDE" />
          </children></Pane>
-      <ComboBox layoutX="87.0" layoutY="154.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
