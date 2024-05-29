@@ -29,6 +29,7 @@ public class DbmsComunication {
 		try {
 			return s.executeQuery(query);
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			return null;
 		}
 	}

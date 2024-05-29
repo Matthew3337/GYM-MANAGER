@@ -66,7 +66,7 @@ public class ServerThread extends Thread{
 		//si rimanda al file "doc/specificheComunicazione" per conoscere la codifica dei codici identificativi
 		
 		
-			while( !(codiceOp = readResponse()).equals(codiciOp.getLast() ) ) //il thread muore quando il client invia il codice di chiusura connessione
+			while( !(codiceOp = readResponse()).equals(codiciOp.get(codiciOp.size()-1) ) ) //il thread muore quando il client invia il codice di chiusura connessione
 			{
 				int operationPosition = codiciOp.indexOf(codiceOp); //contiene la posizione del codice nel vettore ( che determina che operazione bisogna compiere)
 				callOperattion(operationPosition);
@@ -98,13 +98,17 @@ public class ServerThread extends Thread{
 		case 6 : //invia scheda in uso
 			sendScchedaInUso();
 			break;
-		case 7 : 
+		case 7 : // invia elenco schede 
+			sendEleencoSchede();
 			break;
-		case 8: 
+		case 8: //invia una specifica scheda  
+			sendSelectedScheda();
 			break;
-		case 9: 
+		case 9: //elimina esercizio
+			eliminaEsercizio();
 			break;
-		case 10 : 
+		case 10 : //registra carico
+			registraCarico();
 			break;
 		case 11:
 			break;
@@ -250,17 +254,53 @@ public class ServerThread extends Thread{
 	private void sendScchedaInUso()
 	{
 		
+		ResultSet res = getSchedaInUso();
+		boolean pieno;
+		try {
+			pieno = res.next();
+		} catch (Exception e) {
+			pieno = false;
+		}
+		while(pieno)//fin quando non scorre tutto il result set continua ad inviare i dati
+		{
+			try {
+				sendMsg(res.getString(1));//esercizio
+				sendMsg(Integer.toString(res.getInt(2))); //n serie
+				sendMsg(Integer.toString(res.getInt(3))); //n rep
+				sendMsg(Double.toString(res.getDouble(4))); //recupero
+				sendMsg(res.getString(5)); //note
+				sendMsg(Integer.toString(res.getInt(6))); // peso
+				sendMsg(res.getString(7)); //muscolo
+				sendMsg(res.getString(8)); //giorno
+				sendMsg(Integer.toString(res.getInt(9))); //id
+				
+				pieno = res.next(); //prossima riga
+			} catch (SQLException e) {
+				sendMsg("!");
+			} 
+		}
+		sendMsg("!");//per comunicare la fine dei dati da inviare il server invia il carattere !
+		
+	}
+	
+	private ResultSet getSchedaInUso()
+	{
 		//il server effettua la query 
-		String qr = "SELECT e.nome, e.nSerie, e.nRep, e.recupero, e.note, rc.peso, m.nome, e.giornoAllenante "
+		String qr = "SELECT e.nome, e.nSerie, e.nRep, e.recupero, e.note, rc.peso, m.nome, e.giornoAllenante, e.id "
 				+ "FROM esercizio e "
 				+ "left join registrazione_carico rc on rc.idEsercizio=e.id "
 				+ "join gruppo_muscolare m on m.id=e.muscolo "
 				+ "join scheda s on s.id=e.scheda "
-				+ "where u.nomeUtente='"+utente+"' && s.inUso=1"
+				+ "where s.atleta='"+utente+"' && s.inUso=1 "
 				+ "order by e.giornoAllenante asc";
 		
-		ResultSet res = dbCom.select(qr); //registra il result set 
-		
+		return dbCom.select(qr); //registra il result set 
+	}
+	
+	private void sendSelectedScheda()
+	{
+		String name = readResponse();
+		ResultSet res = getSchedaSpecifica(name);
 		boolean pieno;
 		try {
 			pieno = res.next();
@@ -278,6 +318,7 @@ public class ServerThread extends Thread{
 				sendMsg(Integer.toString(res.getInt(6))); // peso
 				sendMsg(res.getString(7)); //muscolo
 				sendMsg(res.getString(8)); //giorno
+				sendMsg(Integer.toString(res.getInt(9))); //id
 				
 				pieno = res.next(); //prossima riga
 			} catch (SQLException e) {
@@ -286,11 +327,46 @@ public class ServerThread extends Thread{
 		}
 		sendMsg("!");//per comunicare la fine dei dati da inviare il server invia il carattere !
 		
-		
-		
-		
 	}
 	
+	private ResultSet getSchedaSpecifica(String name)
+	{
+		//il server effettua la query 
+		String qr = "SELECT e.nome, e.nSerie, e.nRep, e.recupero, e.note, temp2.peso, m.nome, e.giornoAllenante, e.id "
+				+ "FROM esercizio e "
+				+"LEFT JOIN ( SELECT rc.idEsercizio, rc.peso FROM registrazione_carico rc "
+				+ "JOIN ( SELECT MAX(rc1.data) AS data, rc1.idEsercizio FROM registrazione_carico rc1 GROUP BY rc1.idEsercizio "
+				+ ") temprc ON temprc.idEsercizio = rc.idEsercizio AND temprc.data = rc.data ) temp2 "
+				+ "ON temp2.idEsercizio = e.id "
+				+ "join gruppo_muscolare m on m.id=e.muscolo "
+				+ "join scheda s on s.id=e.scheda "
+				+ "where s.atleta='"+utente+"' && s.nome='"+name+"' "
+				+ "order by e.giornoAllenante asc";
+		System.out.println(qr);
+		return dbCom.select(qr); //registra il result set 
+	}
+	
+	private void eliminaEsercizio()
+	{
+		String idEsercizio = readResponse();
+		String qr = "delete from esercizio where esercizio.id=" + idEsercizio;
+		System.out.println(qr);
+		sendMsg(Integer.toString(dbCom.modifieData(qr)));
+	}
+	
+	private void registraCarico()
+	{
+		String idEs = readResponse();
+		String carico = readResponse();
+		String data = readResponse();
+		String qr = "insert into registrazione_carico(data, peso, idEsercizio) values('" + data + "'," + carico + ", " + idEs + " )";
+		System.out.println(qr);
+		
+		if(dbCom.modifieData(qr) == -1)
+			sendMsg("-1");
+		else
+			sendMsg("1");
+	}
 	
 	private int insertSchedaDb(String nome, String dataInizio, String dataFine, int nGiorni)
 	{
@@ -409,7 +485,7 @@ public class ServerThread extends Thread{
 	
 	private int sendMsg(String msg)
 	{
-		if(msg.charAt(msg.length() - 1) != '\n')
+		if(msg.length() == 0 || msg.charAt(msg.length() - 1) != '\n')
 		{
 			msg += '\n'; //la aggiungo
 		}
@@ -437,4 +513,25 @@ public class ServerThread extends Thread{
 		}
 	}
 	
+	private void sendEleencoSchede()
+	{
+		ResultSet res = dbCom.select("select s.nome from scheda s where s.atleta='" + utente + "'");
+		try {
+			while(res.next()) //invio i nomi di tutte le schede
+			{
+				try {
+					sendMsg(res.getString(1));
+				} catch (SQLException e) {
+					sendMsg("!");
+				}
+			}
+		} catch (SQLException e) {
+			sendMsg("!");
+		}
+		
+		sendMsg("!");
+	}
+	
 }
+
+	
