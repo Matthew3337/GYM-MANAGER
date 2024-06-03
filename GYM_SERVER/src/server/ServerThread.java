@@ -110,15 +110,18 @@ public class ServerThread extends Thread{
 		case 10 : //registra carico
 			registraCarico();
 			break;
-		case 11:
+		case 11: //invia caratteristiche esercizio specifico
+			sendEsercizioSpecifico();
 			break;
-		case 12:
+		case 12: //registra modifica esercizio senza eliminare i carichi effettuati
+			registraModificaEsercizio();
+			break;
+		case 13: //registra modifica esercizio  eliminando i carichi effettuati
+			eliminaCarichi(); //lato client quando viene cliccato il bottone per la modifica con eliminazione viene prima chiamata la funzione case 12
 			break;
 		case 14:
 			break;
 		case 15:
-			break;
-		case 16:
 			break;
 		}
 	}
@@ -286,13 +289,27 @@ public class ServerThread extends Thread{
 	private ResultSet getSchedaInUso()
 	{
 		//il server effettua la query 
-		String qr = "SELECT e.nome, e.nSerie, e.nRep, e.recupero, e.note, rc.peso, m.nome, e.giornoAllenante, e.id "
+		String qr =  "SELECT e.nome, e.nSerie, e.nRep, e.recupero, e.note, temp2.peso, m.nome, e.giornoAllenante, e.id "
 				+ "FROM esercizio e "
-				+ "left join registrazione_carico rc on rc.idEsercizio=e.id "
+				+"LEFT JOIN ( SELECT rc.idEsercizio, rc.peso FROM registrazione_carico rc "
+				+ "JOIN ( SELECT MAX(rc1.data) AS data, rc1.idEsercizio FROM registrazione_carico rc1 GROUP BY rc1.idEsercizio "
+				+ ") temprc ON temprc.idEsercizio = rc.idEsercizio AND temprc.data = rc.data ) temp2 "
+				+ "ON temp2.idEsercizio = e.id "
 				+ "join gruppo_muscolare m on m.id=e.muscolo "
 				+ "join scheda s on s.id=e.scheda "
 				+ "where s.atleta='"+utente+"' && s.inUso=1 "
 				+ "order by e.giornoAllenante asc";
+		
+		//aggiorno la scheda selezionata 
+		ResultSet resId = dbCom.select("select s.id from scheda s where s.atleta='"+utente+"' && s.inUso=1");
+		try {
+			if(resId.isBeforeFirst())
+			{
+				resId.next();
+				schedaSelezionata = resId.getInt(1);
+			}
+		} catch (SQLException e) {System.out.println(e.getMessage());}
+		
 		
 		return dbCom.select(qr); //registra il result set 
 	}
@@ -343,6 +360,19 @@ public class ServerThread extends Thread{
 				+ "where s.atleta='"+utente+"' && s.nome='"+name+"' "
 				+ "order by e.giornoAllenante asc";
 		System.out.println(qr);
+		
+		//aggiorno la scheda selezionata 
+		ResultSet resId = dbCom.select("select s.id from scheda s where s.atleta='"+utente+"' && s.nome='"+name+"' ");
+		
+				try {
+					resId.next();
+					schedaSelezionata = resId.getInt(1);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
+				
+	
 		return dbCom.select(qr); //registra il result set 
 	}
 	
@@ -366,6 +396,52 @@ public class ServerThread extends Thread{
 			sendMsg("-1");
 		else
 			sendMsg("1");
+	}
+	
+	private void sendEsercizioSpecifico()
+	{
+		String qr = "select e.giornoAllenante, e.nome, e.nSerie, e.nRep, e.recupero, e.note, gm.nome from esercizio e inner join gruppo_muscolare gm on gm.id=e.muscolo where e.id=" + readResponse();
+		ResultSet res = dbCom.select(qr);
+		
+		try {
+			res.next();
+			sendMsg(res.getString(1));//giorno allenante 
+			sendMsg(res.getString(2)); //nome esercizio
+			sendMsg(Integer.toString(res.getInt(3))); //serie
+			sendMsg(Integer.toString(res.getInt(4))); //rep
+			sendMsg(Double.toString(res.getDouble(5))); //recupero
+			sendMsg(res.getString(6)); //note
+			sendMsg(res.getString(7)); //muscolo
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void registraModificaEsercizio()
+	{
+		//il client invia prima id esercizio e poi le informazioni dell esercizio
+		String id = readResponse();
+		String giorno = readResponse();
+		String muscolo = Integer.toString(findIdMuscolo(readResponse()));
+		String nome = readResponse();
+		String serie = readResponse();
+		String rep = readResponse();
+		String note = readResponse();
+		String recupero = readResponse();
+		
+		String qr = "update esercizio set giornoAllenante='" + giorno + "', muscolo=" + muscolo +", nome='" + nome + "', nSerie=" + serie + ", nRep=" + rep + ", note='" + note + "', recupero=" + recupero + " where id=" + id;
+		System.out.println(qr);
+		sendMsg(Integer.toString(dbCom.modifieData(qr))); //eseguo la query ed invio il risultato
+	}
+	
+	private void eliminaCarichi()
+	{
+		String id = readResponse();
+		String qr = "delete from registrazione_carico where idEsercizio=" + id;
+		System.out.println(qr);
+		
+		dbCom.modifieData(qr);
 	}
 	
 	private int insertSchedaDb(String nome, String dataInizio, String dataFine, int nGiorni)
