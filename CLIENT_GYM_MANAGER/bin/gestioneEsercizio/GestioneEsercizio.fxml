@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.DropShadow?>
@@ -26,6 +27,10 @@
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
+               <styleClass>
+                  <String fx:value="button" />
+                  <String fx:value="shadow" />
+               </styleClass>
             </Button>
             <Button fx:id="carico" layoutX="449.0" layoutY="367.0" mnemonicParsing="false" onAction="#newCarico" prefHeight="64.0" prefWidth="343.0" text="REGISTRA NUOVO CARICO">
                <cursor>
@@ -40,7 +45,11 @@
                </effect>
                <font>
                   <Font name="System Bold" size="15.0" />
-               </font></Button>
+               </font>
+               <styleClass>
+                  <String fx:value="button" />
+                  <String fx:value="shadow" />
+               </styleClass></Button>
             <Button fx:id="elimina" layoutX="449.0" layoutY="465.0" mnemonicParsing="false" onAction="#elimina" prefHeight="64.0" prefWidth="343.0" text="ELIMINA ESERCIZIO ">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
@@ -54,8 +63,12 @@
                </effect>
                <font>
                   <Font name="System Bold" size="16.0" />
-               </font></Button>
-            <Button fx:id="modifica" layoutX="449.0" layoutY="172.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="343.0" text="MODIFICA ESERCIZIO">
+               </font>
+               <styleClass>
+                  <String fx:value="button" />
+                  <String fx:value="shadow" />
+               </styleClass></Button>
+            <Button fx:id="modifica" layoutX="449.0" layoutY="172.0" mnemonicParsing="false" onAction="#modifica" prefHeight="64.0" prefWidth="343.0" text="MODIFICA ESERCIZIO">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -69,6 +82,10 @@
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
+               <styleClass>
+                  <String fx:value="button" />
+                  <String fx:value="shadow" />
+               </styleClass>
             </Button>
             <Button fx:id="back" layoutX="53.0" layoutY="609.0" mnemonicParsing="false" onAction="#indietro" prefHeight="17.0" prefWidth="172.0" text="INDIETRO">
                <cursor>
@@ -84,6 +101,10 @@
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
+               <styleClass>
+                  <String fx:value="button" />
+                  <String fx:value="shadow" />
+               </styleClass>
             </Button>
          </children>
          <effect>

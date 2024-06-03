@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import startWindow.Main;
 
@@ -34,7 +34,7 @@ public class Dashboard {
 			System.out.println(e1.getMessage());
 		}
 		
-		s = new Scene(radice);
+		s = new Scene(radice, Color.TRANSPARENT);
 		s.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
 		

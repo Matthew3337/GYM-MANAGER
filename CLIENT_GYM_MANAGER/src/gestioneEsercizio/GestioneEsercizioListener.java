@@ -1,11 +1,15 @@
 package gestioneEsercizio;
 
+import java.io.IOException;
+
 import dashboardSchede.Dashboard;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import modificaEsercizio.ModificaEsercizio;
+import registraEsercizi.RegistraEserciziPage;
 import registracarico.RegistraCarico;
 import javafx.scene.control.Button;
 import startWindow.Main;
@@ -13,9 +17,14 @@ import startWindow.Main;
 public class GestioneEsercizioListener {	
 	//METODI
 	
-	public void modifica()
+	public void modifica(ActionEvent e)
 	{
 		//open page modifica
+		try {
+			ModificaEsercizio m = new ModificaEsercizio(e);
+		} catch (IOException e1) {
+
+		}
 	}
 	
 

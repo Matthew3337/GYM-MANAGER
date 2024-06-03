@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.util.Vector;
 
 import gestioneEsercizio.GestioneEsercizioPage;
+import homePage.HomePage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,10 +60,14 @@ public class DashboardListener implements Initializable{
 	
 	public void fillSpecificTable()
 	{
-		Main.getC().sendMsg("@$!@");
-		System.out.println( other.getValue());
-		Main.getC().sendMsg(other.getValue());
-		fetchData();
+		if(other.getValue() != null)
+		{
+			Main.getC().sendMsg("@$!@");
+			System.out.println( other.getValue());
+			Main.getC().sendMsg(other.getValue());
+			fetchData();
+		}
+		
 	}
 	
 	
@@ -152,6 +157,11 @@ public class DashboardListener implements Initializable{
 			GestioneEsercizioPage g = new GestioneEsercizioPage(e, idEsercizi.get(sel));
 		}
 		
+	}
+	
+	public void indietro(ActionEvent e)
+	{
+		HomePage h = new HomePage(e);
 	}
 	
 	private void message(AlertType tipo, String title, String header, String text)

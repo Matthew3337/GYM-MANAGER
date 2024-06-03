@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.DropShadow?>
@@ -10,9 +11,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homePage.HomePageListener">
    <children>
-      <Pane fx:id="secondPane" layoutX="100.0" layoutY="100.0" prefHeight="700.0" prefWidth="1240.0">
+      <Pane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
-            <Button fx:id="crea" layoutX="449.0" layoutY="220.0" mnemonicParsing="false" onAction="#creaScheda" prefHeight="64.0" prefWidth="343.0" text="CREA NUOVA SCHEDA">
+            <Button fx:id="crea" layoutX="549.0" layoutY="320.0" mnemonicParsing="false" onAction="#creaScheda" prefHeight="64.0" prefWidth="343.0" text="CREA NUOVA SCHEDA">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -26,8 +27,12 @@
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
+               <styleClass>
+                  <String fx:value="button" />
+                  <String fx:value="shadow" />
+               </styleClass>
             </Button>
-            <Button fx:id="visualizza" layoutX="449.0" layoutY="319.0" mnemonicParsing="false" onAction="#mostraSchede" prefHeight="64.0" prefWidth="343.0" text="LE MIE SCHEDE">
+            <Button fx:id="visualizza" layoutX="549.0" layoutY="419.0" mnemonicParsing="false" onAction="#mostraSchede" prefHeight="64.0" prefWidth="343.0" text="LE MIE SCHEDE">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -40,8 +45,12 @@
                </effect>
                <font>
                   <Font name="System Bold" size="15.0" />
-               </font></Button>
-            <Button fx:id="classifiche" layoutX="449.0" layoutY="417.0" mnemonicParsing="false" onAction="#mostraClassificheGen" prefHeight="64.0" prefWidth="343.0" text="CLASSIFICHE GENERALI">
+               </font>
+               <styleClass>
+                  <String fx:value="button" />
+                  <String fx:value="shadow" />
+               </styleClass></Button>
+            <Button fx:id="classifiche" layoutX="549.0" layoutY="517.0" mnemonicParsing="false" onAction="#mostraClassificheGen" prefHeight="64.0" prefWidth="343.0" text="CLASSIFICHE GENERALI">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -54,7 +63,11 @@
                </effect>
                <font>
                   <Font name="System Bold" size="16.0" />
-               </font></Button>
+               </font>
+               <styleClass>
+                  <String fx:value="button" />
+                  <String fx:value="shadow" />
+               </styleClass></Button>
          </children>
          <effect>
             <DropShadow />

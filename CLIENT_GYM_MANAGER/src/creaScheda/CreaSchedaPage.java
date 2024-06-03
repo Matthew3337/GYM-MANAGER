@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class CreaSchedaPage {
@@ -26,7 +27,7 @@ public class CreaSchedaPage {
 			radice = FXMLLoader.load(getClass().getResource("CreaSchedaXml.fxml"));
 		} catch (IOException a) {}
 		
-		s = new Scene(radice);
+		s = new Scene(radice, Color.TRANSPARENT);
 		s.getStylesheets().add(getClass().getResource("/startWindow/Main.css").toExternalForm());
 
 		

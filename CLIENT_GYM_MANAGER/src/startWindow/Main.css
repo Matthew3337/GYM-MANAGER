@@ -1,26 +1,28 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
-.root
-{
-	-fx-background-color : #ffffff;
-	
-}
 
+.root 
+{ -fx-background-color: transparent; }
 #secondPane
 {
-	-fx-background-color : #c1d8d8;
-
+	-fx-background-color : linear-gradient(from 25% 25% to 100% 100%, #0b1e3e , #4e154c);
+	-fx-background-radius : 100;
 }
 
 .button
 {
 	-fx-background-color : #ffffff;
+	-fx-background-radius : 100;
 }
 
 .label
 {
 	-fx-background-color: rgba(255, 0, 0, 0);
 	-fx-text-fill: #ffd500;
+}
+
+.shadow {
+	-fx-effect: dropShadow(one-pass-box, rgba(0,0,0,0.3), 10.0, 0.0, 0.0, 10.0);
 }
 
 .tableColumn

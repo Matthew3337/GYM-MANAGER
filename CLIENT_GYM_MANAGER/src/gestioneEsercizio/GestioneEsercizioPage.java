@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class GestioneEsercizioPage {
@@ -27,7 +28,7 @@ public class GestioneEsercizioPage {
 			radice = FXMLLoader.load(getClass().getResource("GestioneEsercizio.fxml"));
 		} catch (IOException e1) {}
 		
-		s = new Scene(radice);
+		s = new Scene(radice, Color.TRANSPARENT);
 		s.getStylesheets().add(getClass().getResource("/startWindow/Main.css").toExternalForm());
 
 			
@@ -35,7 +36,7 @@ public class GestioneEsercizioPage {
 		TableView  tmp = (TableView) e.getSource();
 		w = (Stage) tmp.getScene().getWindow();
 		w.setScene(s);
-		w.setUserData(es);	
+		w.setUserData(es);	//memorizzo l id dell esercizio nello user data che sara passato tra le finestre
 		w.show();
 		
 		

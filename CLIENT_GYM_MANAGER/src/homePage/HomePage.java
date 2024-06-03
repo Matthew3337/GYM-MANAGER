@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class HomePage {
@@ -25,7 +26,7 @@ public class HomePage {
 			radice = FXMLLoader.load(getClass().getResource("HomePageXml.fxml"));
 		} catch (IOException e1) {}
 		
-		s = new Scene(radice);
+		s = new Scene(radice, Color.TRANSPARENT);
 		s.getStylesheets().add(getClass().getResource("/startWindow/Main.css").toExternalForm());
 
 		

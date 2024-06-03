@@ -13,16 +13,16 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="registraEsercizi.RegistraEserciziListener">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modificaEsercizio.ModificaEsercizioListener">
    <children>
       <Pane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
-            <Label alignment="CENTER" layoutX="512.0" layoutY="141.0" prefHeight="42.0" prefWidth="375.0" text="REGISTRAZIONE ESERCIZI" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="548.0" layoutY="141.0" prefHeight="42.0" prefWidth="375.0" text="MODIFICA ESERCIZIO" textFill="#ffea8e">
                <font>
                   <Font name="Bell MT Bold" size="26.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="399.0" layoutY="268.0" prefHeight="30.0" prefWidth="300.0" text="*GIORNO ALLENANTE" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="414.0" layoutY="268.0" prefHeight="30.0" prefWidth="300.0" text="*GIORNO ALLENANTE" textFill="#ffea8e">
                <font>
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
@@ -34,7 +34,7 @@
                   </InnerShadow>
                </effect>
             </Label>
-            <Label alignment="CENTER" layoutX="472.0" layoutY="383.0" prefHeight="26.0" prefWidth="147.0" text="*SERIE" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="487.0" layoutY="383.0" prefHeight="26.0" prefWidth="147.0" text="*SERIE" textFill="#ffea8e">
                <font>
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
@@ -46,7 +46,7 @@
                   </InnerShadow>
                </effect>
             </Label>
-            <Label alignment="CENTER" layoutX="472.0" layoutY="342.0" prefHeight="26.0" prefWidth="147.0" text="*NOME" textAlignment="CENTER" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="487.0" layoutY="342.0" prefHeight="26.0" prefWidth="147.0" text="*NOME" textAlignment="CENTER" textFill="#ffea8e">
                <font>
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
@@ -58,7 +58,7 @@
                   </InnerShadow>
                </effect>
             </Label>
-            <Label alignment="CENTER" layoutX="451.0" layoutY="424.0" prefHeight="30.0" prefWidth="196.0" text="*RIPETIZIONI" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="466.0" layoutY="424.0" prefHeight="30.0" prefWidth="196.0" text="*RIPETIZIONI" textFill="#ffea8e">
                <font>
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
@@ -70,7 +70,7 @@
                   </InnerShadow>
                </effect>
             </Label>
-            <Label alignment="CENTER" layoutX="425.0" layoutY="469.0" prefHeight="30.0" prefWidth="242.0" text="*RECUPERO (minuti)" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="440.0" layoutY="469.0" prefHeight="30.0" prefWidth="242.0" text="*RECUPERO (minuti)" textFill="#ffea8e">
                <font>
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
@@ -82,7 +82,7 @@
                   </InnerShadow>
                </effect>
             </Label>
-            <Label alignment="CENTER" layoutX="425.0" layoutY="545.0" prefHeight="30.0" prefWidth="242.0" text="NOTE AGGIUNTIVE" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="440.0" layoutY="545.0" prefHeight="30.0" prefWidth="242.0" text="NOTE AGGIUNTIVE" textFill="WHITE">
                <font>
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
@@ -94,12 +94,12 @@
                   </InnerShadow>
                </effect>
             </Label>
-            <ComboBox fx:id="giorni" layoutX="775.0" layoutY="273.0" onShowing="#setGiorni" prefWidth="150.0" />
-            <TextField fx:id="nome" layoutX="775.0" layoutY="344.0" prefHeight="25.0" prefWidth="150.0" />
-            <TextField fx:id="serie" layoutX="775.0" layoutY="385.0" prefHeight="25.0" prefWidth="150.0" />
-            <TextField fx:id="ripetizioni" layoutX="775.0" layoutY="426.0" prefHeight="25.0" prefWidth="150.0" />
-            <TextField fx:id="recupero" layoutX="775.0" layoutY="471.0" prefHeight="25.0" prefWidth="150.0" />
-            <Button alignment="CENTER" layoutX="1091.0" layoutY="717.0" mnemonicParsing="false" onAction="#registraEsercizio" prefHeight="42.0" prefWidth="147.0" text="REGISTRA ESERCIZIO">
+            <ComboBox fx:id="giorni" layoutX="790.0" layoutY="273.0" onShowing="#setGiorni" prefWidth="150.0" />
+            <TextField fx:id="nome" layoutX="790.0" layoutY="344.0" prefHeight="25.0" prefWidth="150.0" />
+            <TextField fx:id="serie" layoutX="790.0" layoutY="385.0" prefHeight="25.0" prefWidth="150.0" />
+            <TextField fx:id="ripetizioni" layoutX="790.0" layoutY="426.0" prefHeight="25.0" prefWidth="150.0" />
+            <TextField fx:id="recupero" layoutX="790.0" layoutY="471.0" prefHeight="25.0" prefWidth="150.0" />
+            <Button alignment="CENTER" layoutX="1076.0" layoutY="717.0" mnemonicParsing="false" onAction="#registraEsercizio" prefHeight="42.0" prefWidth="147.0" text="MODIFICA ESERCIZIO">
                <effect>
                   <DropShadow height="44.5" radius="21.75" width="44.5">
                      <color>
@@ -115,7 +115,7 @@
                   <String fx:value="shadow" />
                </styleClass>
             </Button>
-            <Button alignment="CENTER" layoutX="202.0" layoutY="717.0" mnemonicParsing="false" onAction="#fine" prefHeight="42.0" prefWidth="242.0" text="REGISTRAZIONE ESERCIZI TERMINATA" textAlignment="CENTER">
+            <Button alignment="CENTER" layoutX="217.0" layoutY="717.0" mnemonicParsing="false" onAction="#fine" prefHeight="42.0" prefWidth="242.0" text="INDIETRO" textAlignment="CENTER">
                <effect>
                   <DropShadow height="44.5" radius="21.75" width="44.5">
                      <color>
@@ -131,8 +131,8 @@
                   <String fx:value="shadow" />
                </styleClass>
             </Button>
-            <TextArea fx:id="note" layoutX="721.0" layoutY="520.0" prefHeight="109.0" prefWidth="258.0" />
-            <Label alignment="CENTER" layoutX="404.0" layoutY="306.0" prefHeight="30.0" prefWidth="291.0" text="*GRUPPO MUSCOLARE" textFill="#ffea8e">
+            <TextArea fx:id="note" layoutX="736.0" layoutY="520.0" prefHeight="109.0" prefWidth="258.0" />
+            <Label alignment="CENTER" layoutX="419.0" layoutY="306.0" prefHeight="30.0" prefWidth="291.0" text="*GRUPPO MUSCOLARE" textFill="#ffea8e">
                <font>
                   <Font name="Bell MT Bold" size="16.0" />
                </font>
@@ -144,7 +144,23 @@
                   </InnerShadow>
                </effect>
             </Label>
-            <ComboBox fx:id="muscolo" layoutX="775.0" layoutY="308.0" onShowing="#setMuscoli" prefWidth="150.0" />
+            <ComboBox fx:id="muscolo" layoutX="790.0" layoutY="308.0" onShowing="#setMuscoli" prefWidth="150.0" />
+            <Button alignment="CENTER" layoutX="598.0" layoutY="717.0" mnemonicParsing="false" onAction="#registraEsercizioDelete" prefHeight="42.0" prefWidth="276.0" text="MODIFICA ESERCIZIO + ELIMINA CARICHI">
+               <effect>
+                  <DropShadow height="44.5" radius="21.75" width="44.5">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="button" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </Button>
          </children>
       </Pane>
    </children>

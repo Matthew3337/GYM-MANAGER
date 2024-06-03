@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class RegistraEserciziPage {
@@ -24,7 +25,7 @@ public class RegistraEserciziPage {
 		radice =  FXMLLoader.load(getClass().getResource("registraEserciziXml.fxml"));
 		Node tmp = (Node) e.getSource();
 		stage = (Stage) tmp.getScene().getWindow(); //la finestra in cui apparira la nuova scena sara' la stessa
-		scena = new Scene(radice); //passo alla scena l elemento radice
+		scena = new Scene(radice, Color.TRANSPARENT); //passo alla scena l elemento radice
 		stage.setScene(scena); //aggiungo la nuova scena alla finestra
 		stage.show(); //aggiorno finestra
 		
