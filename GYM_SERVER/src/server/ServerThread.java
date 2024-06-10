@@ -119,9 +119,29 @@ public class ServerThread extends Thread{
 		case 13: //registra modifica esercizio  eliminando i carichi effettuati
 			eliminaCarichi(); //lato client quando viene cliccato il bottone per la modifica con eliminazione viene prima chiamata la funzione case 12
 			break;
-		case 14:
+		case 14: //invia dati grafico esercizio singolo  
+			inviaDatiGraficoEsercizio();
 			break;
-		case 15:
+		case 15: //invia id scheda di un esericzio
+			inviaIdSchedaByEs();
+			break;
+		case 16 : //elimina scheda 
+			eliminaScheda();
+			break;
+		case 17 : //registra peso corporeo
+			registraPesoCorporeo();
+			break;
+		case 18 : //registro la nuova scheda selezionata 
+			updateSchedaSel();
+			break;
+		case 19 : //invia durata scheda
+			inviaDurataScheda();
+			break;
+		case 20 : //aggiorno durata scheda
+			aggiornaDurata();
+			break;
+		case 21 : 
+			inviaGraficoScheda();
 			break;
 		}
 	}
@@ -433,6 +453,131 @@ public class ServerThread extends Thread{
 		String qr = "update esercizio set giornoAllenante='" + giorno + "', muscolo=" + muscolo +", nome='" + nome + "', nSerie=" + serie + ", nRep=" + rep + ", note='" + note + "', recupero=" + recupero + " where id=" + id;
 		System.out.println(qr);
 		sendMsg(Integer.toString(dbCom.modifieData(qr))); //eseguo la query ed invio il risultato
+	}
+	
+	private void inviaDatiGraficoEsercizio()
+	{
+		int idEs = Integer.parseInt(readResponse());
+		String qr = "select rc.data, rc.peso from registrazione_carico rc where rc.idEsercizio="+idEs+" order by rc.data asc";
+		System.out.println(qr);
+		ResultSet res = dbCom.select(qr);
+		fetchAndSend(res);
+	}
+	
+	private void inviaIdSchedaByEs()
+	{
+		String idEs = readResponse();
+		String qr = "select e.scheda from esercizio e where e.id=" + idEs;
+		int idScheda;
+		System.out.println(qr);
+		ResultSet res = dbCom.select(qr);
+		
+		try {
+			res.next();
+			idScheda = res.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			idScheda = -1;
+		}
+		
+		sendMsg(Integer.toString(idScheda));
+		
+	}
+	
+	private void eliminaScheda()
+	{
+		String idScheda = readResponse();
+		
+		String qr = "delete from scheda where id=" + idScheda;
+		System.out.println(qr);
+		int res = dbCom.modifieData(qr);
+		
+		sendMsg(Integer.toString(res));
+	}
+	
+	private void registraPesoCorporeo()
+	{
+		String scheda = readResponse();
+		String peso = readResponse();
+		String data = readResponse();
+		
+		String qr = "insert into registrazione_peso(data, peso, idScheda) values('" + data + "', " + peso + ", " + scheda + ")";
+		System.out.println(qr);
+		int res  = dbCom.modifieData(qr);
+		
+		sendMsg(Integer.toString(res));
+	}
+	
+	private void updateSchedaSel()
+	{
+		schedaSelezionata = Integer.parseInt(readResponse());
+	}
+	
+	private void inviaDurataScheda()
+	{
+		String qr = "select s.dataInizio, s.dataFine from scheda s where s.id=" + schedaSelezionata;
+		System.out.println(qr);
+		ResultSet res = dbCom.select(qr);
+		
+		try {
+			res.next();
+			sendMsg(res.getDate(1).toString());
+			sendMsg(res.getDate(2).toString());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sendMsg("-1");
+			sendMsg("-1");
+
+		}
+		
+	}
+	
+	private void aggiornaDurata()
+	{
+		String inizio = readResponse();
+		String fine = readResponse();
+		
+		String qr = "update scheda set dataInizio='" + inizio + "', dataFine='" + fine +  "' where scheda.id=" + schedaSelezionata;
+		
+		String isValid = isValidPeriod(inizio, fine);
+		System.out.println(isValid);
+		if(isValid.equals("free"))
+		{
+			System.out.println(qr);
+			int res = dbCom.modifieData(qr);
+			System.out.println(res);
+			sendMsg(Integer.toString(res));
+		} 
+		else if(!isValid.equals("free"))
+			sendMsg(isValid);
+	}
+	
+	private void inviaGraficoScheda()
+	{
+		String qr = "select rp.data, rp.peso from registrazione_peso rp where rp.idScheda="+schedaSelezionata+" order by rp.data asc";
+		System.out.println(qr);
+		ResultSet res = dbCom.select(qr);
+		fetchAndSend(res);
+	}
+	
+	private void fetchAndSend(ResultSet res)
+	{
+		try 
+		{
+			while(res.next())
+			{
+				sendMsg(res.getDate(1).toString());
+				sendMsg(Double.toString(res.getDouble(2)));
+			}
+			
+			sendMsg("!");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			sendMsg("!");
+			}
 	}
 	
 	private void eliminaCarichi()
