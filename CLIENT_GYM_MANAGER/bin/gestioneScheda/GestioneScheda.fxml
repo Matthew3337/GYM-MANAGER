@@ -3,17 +3,18 @@
 <?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestioneEsercizio.GestioneEsercizioListener">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestioneScheda.GestioneSchedaListener">
    <children>
       <Pane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
-            <Button fx:id="grafico" layoutX="549.0" layoutY="318.0" mnemonicParsing="false" onAction="#grafico" prefHeight="64.0" prefWidth="343.0" text="VISUALIZZA GRAFICO PROGRESSIONE">
+            <Button fx:id="grafico" layoutX="549.0" layoutY="254.0" mnemonicParsing="false" onAction="#aggiungiEsercizio" prefHeight="64.0" prefWidth="343.0" text="AGGIUNGI ESERCIZIO">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -32,7 +33,7 @@
                   <String fx:value="shadow" />
                </styleClass>
             </Button>
-            <Button fx:id="carico" layoutX="549.0" layoutY="417.0" mnemonicParsing="false" onAction="#newCarico" prefHeight="64.0" prefWidth="343.0" text="REGISTRA NUOVO CARICO">
+            <Button fx:id="carico" layoutX="549.0" layoutY="353.0" mnemonicParsing="false" onAction="#modificaDurata" prefHeight="64.0" prefWidth="343.0" text="MODIFICA DURATA">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -50,7 +51,7 @@
                   <String fx:value="button" />
                   <String fx:value="shadow" />
                </styleClass></Button>
-            <Button fx:id="elimina" layoutX="549.0" layoutY="515.0" mnemonicParsing="false" onAction="#elimina" prefHeight="64.0" prefWidth="343.0" text="ELIMINA ESERCIZIO ">
+            <Button fx:id="elimina" layoutX="549.0" layoutY="451.0" mnemonicParsing="false" onAction="#grafico" prefHeight="64.0" prefWidth="343.0" text="GRAFICO PESO CORPOREO">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -68,7 +69,7 @@
                   <String fx:value="button" />
                   <String fx:value="shadow" />
                </styleClass></Button>
-            <Button fx:id="modifica" layoutX="549.0" layoutY="222.0" mnemonicParsing="false" onAction="#modifica" prefHeight="64.0" prefWidth="343.0" text="MODIFICA ESERCIZIO">
+            <Button fx:id="modifica" layoutX="549.0" layoutY="158.0" mnemonicParsing="false" onAction="#registraPeso" prefHeight="64.0" prefWidth="343.0" text="REGISTRA PESO CORPOREO">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -87,7 +88,7 @@
                   <String fx:value="shadow" />
                </styleClass>
             </Button>
-            <Button fx:id="back" layoutX="549.0" layoutY="615.0" mnemonicParsing="false" onAction="#indietro" prefHeight="64.0" prefWidth="343.0" text="INDIETRO">
+            <Button fx:id="back" layoutX="549.0" layoutY="640.0" mnemonicParsing="false" onAction="#indietro" prefHeight="64.0" prefWidth="343.0" text="INDIETRO">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -106,6 +107,26 @@
                   <String fx:value="shadow" />
                </styleClass>
             </Button>
+            <Button fx:id="elimina1" layoutX="549.0" layoutY="552.0" mnemonicParsing="false" onAction="#eliminaScheda" prefHeight="64.0" prefWidth="343.0" text="ELIMINA SCHEDA">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow height="44.5" radius="21.75" width="44.5">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="button" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </Button>
+            <Label fx:id="idScheda" layoutX="305.0" layoutY="237.0" opacity="0.0" prefHeight="71.0" prefWidth="120.0" />
          </children>
          <effect>
             <DropShadow />

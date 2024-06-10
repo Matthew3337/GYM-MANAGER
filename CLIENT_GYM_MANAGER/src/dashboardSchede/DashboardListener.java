@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.util.Vector;
 
 import gestioneEsercizio.GestioneEsercizioPage;
+import gestioneScheda.GestioneScheda;
 import homePage.HomePage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -155,6 +156,15 @@ public class DashboardListener implements Initializable{
 		{
 			//new page menu esercizio
 			GestioneEsercizioPage g = new GestioneEsercizioPage(e, idEsercizi.get(sel));
+		}
+		else //il click e' avvenuto sulla tabella, quindi si apre la pagina di gestione della scheda
+		{
+			
+			//chiedo id scheda tramite id esercizio 
+			Main.getC().sendMsg("!!!!");
+			Main.getC().sendMsg(Integer.toString(idEsercizi.get(0)));
+			int idScheda = Integer.parseInt(Main.getC().readResponse());
+			GestioneScheda g = new GestioneScheda(e, idScheda);//open page gestione scheda 
 		}
 		
 	}

@@ -3,6 +3,7 @@ package gestioneEsercizio;
 import java.io.IOException;
 
 import dashboardSchede.Dashboard;
+import graficoEsercizio.GraficoEsercizio;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -28,9 +29,10 @@ public class GestioneEsercizioListener {
 	}
 	
 
-	public void grafico()
+	public void grafico(ActionEvent e)
 	{
 		//open page grafico
+		GraficoEsercizio g = new GraficoEsercizio(e);
 	}
 	
 	public void newCarico (ActionEvent e)

@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
@@ -17,57 +16,29 @@
    <children>
       <Pane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@Main.css">
          <children>
-            <Label alignment="CENTER" layoutX="382.0" layoutY="345.0" prefHeight="53.0" prefWidth="421.0" text="*NOME SCHEDA" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="308.0" layoutY="267.0" prefHeight="53.0" prefWidth="421.0" text="*NOME SCHEDA" textFill="#ffea8e">
                <font>
-                  <Font name="Bell MT Bold" size="26.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
-               <effect>
-                  <InnerShadow>
-                     <color>
-                        <Color red="0.6578947305679321" green="0.6578947305679321" blue="0.6578947305679321" />
-                     </color>
-                  </InnerShadow>
-               </effect>
             </Label>
-            <Label alignment="CENTER" layoutX="382.0" layoutY="398.0" prefHeight="53.0" prefWidth="421.0" text="*DATA DI INIZO" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="308.0" layoutY="343.0" prefHeight="53.0" prefWidth="421.0" text="*DATA DI INIZO" textFill="#ffea8e">
                <font>
-                  <Font name="Bell MT Bold" size="26.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
-               <effect>
-                  <InnerShadow>
-                     <color>
-                        <Color red="0.6578947305679321" green="0.6578947305679321" blue="0.6578947305679321" />
-                     </color>
-                  </InnerShadow>
-               </effect>
             </Label>
-            <Label alignment="CENTER" layoutX="382.0" layoutY="492.0" prefHeight="53.0" prefWidth="421.0" text="*NUMERO GIORNI ALLENANTI" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="308.0" layoutY="509.0" prefHeight="53.0" prefWidth="421.0" text="*NUMERO GIORNI ALLENANTI" textFill="#ffea8e">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
-               <effect>
-                  <InnerShadow>
-                     <color>
-                        <Color red="0.6578947305679321" green="0.6578947305679321" blue="0.6578947305679321" />
-                     </color>
-                  </InnerShadow>
-               </effect>
             </Label>
-            <Label alignment="CENTER" layoutX="382.0" layoutY="450.0" prefHeight="53.0" prefWidth="421.0" text="*DATA DI FINE" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="308.0" layoutY="422.0" prefHeight="53.0" prefWidth="421.0" text="*DATA DI FINE" textFill="#ffea8e">
                <font>
-                  <Font name="Bell MT Bold" size="26.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
-               <effect>
-                  <InnerShadow>
-                     <color>
-                        <Color red="0.6578947305679321" green="0.6578947305679321" blue="0.6578947305679321" />
-                     </color>
-                  </InnerShadow>
-               </effect>
             </Label>
-            <TextField fx:id="nomeScheda" layoutX="869.0" layoutY="359.0" prefHeight="25.0" prefWidth="197.0" />
-            <TextField fx:id="nGiorni" layoutX="869.0" layoutY="506.0" prefHeight="25.0" prefWidth="197.0" />
-            <Button fx:id="continua" layoutX="1152.0" layoutY="712.0" mnemonicParsing="false" onAction="#continua" prefHeight="47.0" prefWidth="117.0" text="CONTINUA">
+            <TextField fx:id="nomeScheda" layoutX="830.0" layoutY="277.0" prefHeight="32.0" prefWidth="252.0" />
+            <TextField fx:id="nGiorni" layoutX="830.0" layoutY="520.0" prefHeight="32.0" prefWidth="252.0" />
+            <Button fx:id="continua" layoutX="1082.0" layoutY="759.0" mnemonicParsing="false" onAction="#continua" prefHeight="70.0" prefWidth="238.0" text="CONTINUA">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -86,7 +57,7 @@
                   <String fx:value="shadow" />
                </styleClass>
             </Button>
-            <Button fx:id="accedi" layoutX="172.0" layoutY="712.0" mnemonicParsing="false" onAction="#indietro" prefHeight="47.0" prefWidth="117.0" text="INDIETRO">
+            <Button fx:id="accedi" layoutX="70.0" layoutY="759.0" mnemonicParsing="false" onAction="#indietro" prefHeight="70.0" prefWidth="238.0" text="INDIETRO">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -105,20 +76,13 @@
                   <String fx:value="shadow" />
                </styleClass>
             </Button>
-            <Label alignment="CENTER" layoutX="498.0" layoutY="141.0" prefHeight="60.0" prefWidth="538.0" text="REGISTRAZIONE SCHEDA PARTE 1" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="451.0" layoutY="34.0" prefHeight="60.0" prefWidth="538.0" text="REGISTRAZIONE SCHEDA PARTE 1" textFill="#ffea8e">
                <font>
-                  <Font name="Bell MT Bold" size="29.0" />
+                  <Font name="System Bold" size="29.0" />
                </font>
-               <effect>
-                  <InnerShadow>
-                     <color>
-                        <Color red="0.6578947305679321" green="0.6578947305679321" blue="0.6578947305679321" />
-                     </color>
-                  </InnerShadow>
-               </effect>
             </Label>
-            <DatePicker fx:id="dataInizio" layoutX="869.0" layoutY="412.0" prefHeight="25.0" prefWidth="197.0" />
-            <DatePicker fx:id="dataFine" layoutX="869.0" layoutY="464.0" prefHeight="25.0" prefWidth="197.0" />
+            <DatePicker fx:id="dataInizio" layoutX="830.0" layoutY="354.0" prefHeight="32.0" prefWidth="252.0" />
+            <DatePicker fx:id="dataFine" layoutX="830.0" layoutY="433.0" prefHeight="32.0" prefWidth="252.0" />
          </children>
          <effect>
             <DropShadow />

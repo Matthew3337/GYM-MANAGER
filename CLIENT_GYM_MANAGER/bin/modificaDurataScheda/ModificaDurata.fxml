@@ -4,31 +4,30 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="registracarico.RegistraCaricoListener">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modificaDurataScheda.ModificaDurataListener">
    <children>
       <Pane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
-            <Label layoutX="451.0" layoutY="28.0" prefHeight="95.0" prefWidth="538.0" text="  REGISTRAZIONE CARICO" textAlignment="CENTER">
+            <Label layoutX="354.0" layoutY="33.0" prefHeight="95.0" prefWidth="732.0" text="                  DURATA SCHEDA" textAlignment="CENTER">
                <font>
                   <Font name="SansSerif Bold" size="39.0" />
                </font>
             </Label>
-            <Label layoutX="416.0" layoutY="271.0" prefHeight="73.0" prefWidth="173.0" text="DATA">
+            <Label layoutX="401.0" layoutY="271.0" prefHeight="73.0" prefWidth="188.0" text=" DATA INIZIO">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="416.0" layoutY="458.0" prefHeight="73.0" prefWidth="173.0" text="CARICO">
+            <Label layoutX="416.0" layoutY="458.0" prefHeight="73.0" prefWidth="173.0" text="DATA FINE">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
-            <DatePicker fx:id="data" layoutX="871.0" layoutY="289.0" prefHeight="37.0" prefWidth="200.0" />
+            <DatePicker fx:id="dataInizio" layoutX="871.0" layoutY="289.0" prefHeight="37.0" prefWidth="200.0" />
             <Button fx:id="indietro" layoutX="63.0" layoutY="760.0" mnemonicParsing="false" onAction="#indietro" prefHeight="67.0" prefWidth="200.0" text="INDIETRO">
                <styleClass>
                   <String fx:value="button" />
@@ -45,7 +44,18 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <TextField fx:id="carico" layoutX="871.0" layoutY="476.0" prefHeight="37.0" prefWidth="200.0" />
+            <Label fx:id="idScheda" layoutX="142.0" layoutY="476.0" opacity="0.0" prefHeight="28.0" prefWidth="104.0" text="Label" />
+            <DatePicker fx:id="dataFine" layoutX="871.0" layoutY="472.0" prefHeight="37.0" prefWidth="200.0" />
+            <Label fx:id="inizioAttuale" layoutX="419.0" layoutY="336.0" prefHeight="37.0" prefWidth="136.0" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="fineAttuale" layoutX="419.0" layoutY="522.0" prefHeight="19.0" prefWidth="136.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

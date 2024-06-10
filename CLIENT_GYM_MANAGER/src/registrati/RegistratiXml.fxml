@@ -15,41 +15,41 @@
    <children>
       <Pane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@Main.css">
          <children>
-            <Label alignment="CENTER" layoutX="446.0" layoutY="246.0" prefHeight="25.0" prefWidth="157.0" text="*NOME" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="406.0" layoutY="170.0" prefHeight="52.0" prefWidth="197.0" text="*NOME" textFill="#ffea8e">
                <font>
-                  <Font name="Bell MT Bold" size="16.0" />
+                  <Font name="System Bold" size="24.0" />
                </font></Label>
-            <Label alignment="CENTER" layoutX="446.0" layoutY="288.0" prefHeight="25.0" prefWidth="157.0" text="*COGNOME" textFill="#ffea8e">
+            <Label alignment="CENTER" layoutX="406.0" layoutY="240.0" prefHeight="52.0" prefWidth="197.0" text="*COGNOME" textFill="#ffea8e">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="446.0" layoutY="371.0" prefHeight="25.0" prefWidth="157.0" text="*ALTEZZA">
+            <Label alignment="CENTER" layoutX="406.0" layoutY="373.0" prefHeight="52.0" prefWidth="197.0" text="*ALTEZZA">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="446.0" layoutY="327.0" prefHeight="25.0" prefWidth="157.0" text="*PESO">
+            <Label alignment="CENTER" layoutX="406.0" layoutY="305.0" prefHeight="52.0" prefWidth="197.0" text="*PESO">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="426.0" layoutY="411.0" prefHeight="35.0" prefWidth="197.0" text="*NOME UTENTE">
+            <Label alignment="CENTER" layoutX="406.0" layoutY="441.0" prefHeight="52.0" prefWidth="197.0" text="*NOME UTENTE">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="446.0" layoutY="455.0" prefHeight="25.0" prefWidth="157.0" text="*PASSWORD">
+            <Label alignment="CENTER" layoutX="406.0" layoutY="509.0" prefHeight="52.0" prefWidth="197.0" text="*PASSWORD">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="nome" layoutX="720.0" layoutY="249.0" prefHeight="25.0" prefWidth="197.0" />
-            <TextField fx:id="cognome" layoutX="720.0" layoutY="291.0" prefHeight="25.0" prefWidth="197.0" />
-            <TextField fx:id="peso" layoutX="720.0" layoutY="330.0" prefHeight="25.0" prefWidth="197.0" />
-            <TextField fx:id="altezza" layoutX="720.0" layoutY="374.0" prefHeight="25.0" prefWidth="197.0" />
-            <TextField fx:id="nomeUtente" layoutX="720.0" layoutY="416.0" prefHeight="25.0" prefWidth="197.0" />
-            <Button fx:id="continua" layoutX="1016.0" layoutY="600.0" mnemonicParsing="false" onAction="#continua" prefHeight="54.0" prefWidth="172.0" text="CONTINUA">
+            <TextField fx:id="nome" layoutX="714.0" layoutY="175.0" prefHeight="42.0" prefWidth="237.0" />
+            <TextField fx:id="cognome" layoutX="714.0" layoutY="245.0" prefHeight="42.0" prefWidth="237.0" />
+            <TextField fx:id="peso" layoutX="714.0" layoutY="310.0" prefHeight="42.0" prefWidth="237.0" />
+            <TextField fx:id="altezza" layoutX="714.0" layoutY="378.0" prefHeight="42.0" prefWidth="237.0" />
+            <TextField fx:id="nomeUtente" layoutX="714.0" layoutY="446.0" prefHeight="42.0" prefWidth="237.0" />
+            <Button fx:id="continua" layoutX="1116.0" layoutY="748.0" mnemonicParsing="false" onAction="#continua" prefHeight="67.0" prefWidth="237.0" text="CONTINUA">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -68,8 +68,8 @@
                   <String fx:value="shadow" />
                </styleClass>
             </Button>
-            <TextField fx:id="password" layoutX="720.0" layoutY="457.0" prefHeight="25.0" prefWidth="197.0" />
-            <Button fx:id="accedi" layoutX="252.0" layoutY="600.0" mnemonicParsing="false" onAction="#accedi" prefHeight="54.0" prefWidth="172.0" text="ACCEDI">
+            <TextField fx:id="password" layoutX="714.0" layoutY="514.0" prefHeight="42.0" prefWidth="237.0" />
+            <Button fx:id="accedi" layoutX="96.0" layoutY="748.0" mnemonicParsing="false" onAction="#accedi" prefHeight="67.0" prefWidth="237.0" text="ACCEDI">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

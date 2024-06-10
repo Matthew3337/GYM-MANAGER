@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="registracarico.RegistraCaricoListener">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../startWindow/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="registraPeso.RegistraPesoListener">
    <children>
       <Pane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
-            <Label layoutX="451.0" layoutY="28.0" prefHeight="95.0" prefWidth="538.0" text="  REGISTRAZIONE CARICO" textAlignment="CENTER">
+            <Label layoutX="354.0" layoutY="33.0" prefHeight="95.0" prefWidth="732.0" text="  REGISTRAZIONE PESO CORPOREO" textAlignment="CENTER">
                <font>
                   <Font name="SansSerif Bold" size="39.0" />
                </font>
@@ -23,7 +23,7 @@
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="416.0" layoutY="458.0" prefHeight="73.0" prefWidth="173.0" text="CARICO">
+            <Label layoutX="416.0" layoutY="458.0" prefHeight="73.0" prefWidth="173.0" text="PESO">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
@@ -46,6 +46,7 @@
                   <Font name="System Bold" size="12.0" />
                </font></Button>
             <TextField fx:id="carico" layoutX="871.0" layoutY="476.0" prefHeight="37.0" prefWidth="200.0" />
+            <Label fx:id="idScheda" layoutX="142.0" layoutY="476.0" opacity="0.0" prefHeight="28.0" prefWidth="104.0" text="Label" />
          </children>
       </Pane>
    </children>

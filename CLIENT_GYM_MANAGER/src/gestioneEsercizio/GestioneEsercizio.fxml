@@ -13,7 +13,7 @@
    <children>
       <Pane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
-            <Button fx:id="grafico" layoutX="549.0" layoutY="318.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="343.0" text="VISUALIZZA GRAFICO PROGRESSIONE">
+            <Button fx:id="grafico" layoutX="549.0" layoutY="318.0" mnemonicParsing="false" onAction="#grafico" prefHeight="64.0" prefWidth="343.0" text="VISUALIZZA GRAFICO PROGRESSIONE">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>

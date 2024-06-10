@@ -2,6 +2,7 @@ package registraEsercizi;
 
 import java.util.Vector;
 
+import dashboardSchede.Dashboard;
 import homePage.HomePage;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -93,7 +94,7 @@ public class RegistraEserciziListener {
 	
 	public void fine(ActionEvent e)
 	{
-		HomePage h = new HomePage(e);
+		Dashboard d = new Dashboard(e);
 	}
 	
 	private void message(AlertType tipo, String title, String header, String text)
