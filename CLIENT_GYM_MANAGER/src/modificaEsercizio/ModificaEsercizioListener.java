@@ -119,9 +119,9 @@ public class ModificaEsercizioListener {
 	private boolean verifyField()
 	{
 		boolean res = false;
-		if(giorni.getValue().isEmpty())
+		if(giorni.getValue() == null)
 			message(AlertType.ERROR, "ERRORE", "SELEZIONARE UN GIORNO ALLENANTE", "riprova");
-		else if(muscolo.getValue().isEmpty())
+		else if(muscolo.getValue() == null)
 		message(AlertType.ERROR, "ERRORE", "SELEZIONARE UN GIORNO ALLENANTE", "riprova");
 		else if(nome.getText().isEmpty() || serie.getText().isEmpty() || ripetizioni.getText().isEmpty())
 			message(AlertType.ERROR, "ERRORE", "RISULTANO CAMPI NON COMPILATI", "Compila tutti i campi obbligatori (*) e riprova");
