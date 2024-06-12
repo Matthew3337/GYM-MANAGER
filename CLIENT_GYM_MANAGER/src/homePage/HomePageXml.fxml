@@ -13,7 +13,7 @@
    <children>
       <Pane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
-            <Button fx:id="crea" layoutX="525.0" layoutY="274.0" mnemonicParsing="false" onAction="#creaScheda" prefHeight="84.0" prefWidth="390.0" text="CREA NUOVA SCHEDA">
+            <Button fx:id="crea" layoutX="525.0" layoutY="211.0" mnemonicParsing="false" onAction="#creaScheda" prefHeight="84.0" prefWidth="390.0" text="CREA NUOVA SCHEDA">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -32,7 +32,7 @@
                   <String fx:value="shadow" />
                </styleClass>
             </Button>
-            <Button fx:id="visualizza" layoutX="525.0" layoutY="406.0" mnemonicParsing="false" onAction="#mostraSchede" prefHeight="84.0" prefWidth="390.0" text="LE MIE SCHEDE">
+            <Button fx:id="visualizza" layoutX="525.0" layoutY="343.0" mnemonicParsing="false" onAction="#mostraSchede" prefHeight="84.0" prefWidth="390.0" text="LE MIE SCHEDE">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -50,7 +50,7 @@
                   <String fx:value="button" />
                   <String fx:value="shadow" />
                </styleClass></Button>
-            <Button fx:id="classifiche" layoutX="525.0" layoutY="542.0" mnemonicParsing="false" onAction="#mostraClassificheGen" prefHeight="84.0" prefWidth="390.0" text="CLASSIFICHE GENERALI">
+            <Button fx:id="cl_schede" layoutX="525.0" layoutY="479.0" mnemonicParsing="false" onAction="#classificaSchede" prefHeight="84.0" prefWidth="390.0" text="CLASSIFICA SCHEDE">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -68,6 +68,25 @@
                   <String fx:value="button" />
                   <String fx:value="shadow" />
                </styleClass></Button>
+            <Button fx:id="cl_esercizi" layoutX="525.0" layoutY="606.0" mnemonicParsing="false" onAction="#classificaEsercizi" prefHeight="84.0" prefWidth="390.0" text="CLASSIFICA ESERCIZI">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow height="44.5" radius="21.75" width="44.5">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="button" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </Button>
          </children>
          <effect>
             <DropShadow />

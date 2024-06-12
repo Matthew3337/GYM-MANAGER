@@ -30,6 +30,55 @@
 	-fx-text-fill: #000000;
 }
 
+/* Stile della tabella */
+.table-view {
+    -fx-background-color: transparent; /* Sfondo trasparente per far vedere il gradiente */
+    -fx-table-cell-border-color: rgba(255, 255, 255, 0.5); /* Bordi delle celle semi-trasparenti */
+    -fx-padding: 10;
+}
+
+/* Sfondo delle intestazioni delle colonne */
+.table-view .column-header-background {
+    -fx-background-color: #000000; /* Sfondo delle intestazioni nero */
+}
+
+/* Stile del testo delle intestazioni delle colonne */
+.table-view .column-header .label {
+    -fx-text-fill: #000000; /* Testo delle intestazioni in bianco */
+    -fx-font-weight: bold;
+}
+
+/* Stile delle righe */
+.table-view .table-row-cell {
+    -fx-background-color: transparent; /* Sfondo delle righe trasparente */
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Sfondo alternato per le righe dispari */
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: rgba(255, 255, 255, 0.05); /* Sfondo alternato per le righe pari */
+}
+
+/* Stile delle celle */
+.table-view .table-cell {
+    -fx-text-fill: #ffffff; /* Testo delle celle in bianco */
+    -fx-alignment: CENTER; /* Allineamento centrato */
+    -fx-border-color: transparent;
+    -fx-padding: 5;
+}
+
+/* Stile delle celle selezionate */
+.table-view .table-row-cell:selected {
+    -fx-background-color: rgba(255, 255, 255, 0.3); /* Sfondo delle righe selezionate con trasparenza */
+}
+
+.table-view .table-cell:selected {
+    -fx-text-fill: #000000; /* Testo delle celle selezionate in nero */
+}
+
+
 
 
 
