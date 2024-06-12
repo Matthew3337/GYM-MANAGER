@@ -140,8 +140,11 @@ public class ServerThread extends Thread{
 		case 20 : //aggiorno durata scheda
 			aggiornaDurata();
 			break;
-		case 21 : 
+		case 21 : //invio i dati per creare il grafico progressione peso di una scheda
 			inviaGraficoScheda();
+			break;
+		case 22 : //invio la classifica degli esercizi in base alla progressione del carico
+			inviaClassificaEsercizi();
 			break;
 		}
 	}
@@ -560,6 +563,151 @@ public class ServerThread extends Thread{
 		System.out.println(qr);
 		ResultSet res = dbCom.select(qr);
 		fetchAndSend(res);
+	}
+	
+	private void inviaClassificaEsercizi()
+	{
+		String muscolo = readResponse(); //filtro gruppo muscolare
+		String inizio = readResponse(); //filtro data di inizio
+		String fine =  readResponse(); //filtro data fine 
+		
+		Vector<String> esercizi = new Vector<String>(); //contiene i nomi di tutti gli esercizi che rispettano i filtri impostati 
+		Vector<Double> aumentoPerc = new Vector<Double>(); //contiene per ogni esercizio corrispondente nel vettore esercizi, l'aumento percentuale nel tempo
+		
+		//4 casi possibili : (muscolo + periodo) || (solo muscolo) || (solo periodo) || (generico nessun filtro)
+		ResultSet res = getDatiClassificaEsercizi( muscolo,  inizio,  fine);
+		fetchDatiClassifica(res, esercizi, aumentoPerc);
+		sendDatiClassificaEsercizi( esercizi,  aumentoPerc);
+	}
+	
+	private ResultSet getDatiClassificaEsercizi(String muscolo, String inizio, String fine) // in base ai filtri applicati scrive la query e restituisce il result set da fetchare 
+	{
+		String qr;
+		
+		if(!muscolo.equals("vuoto") && !inizio.equals("vuoto") && !fine.equals("vuoto")) //filtro muscolo + periodo attivo 
+		{
+			qr = "select e.nome, rc.peso from esercizio e join registrazione_carico rc on rc.idEsercizio=e.id"
+					+ " join gruppo_muscolare gm on gm.id=e.muscolo join scheda s on s.id=e.scheda join utente u on u.nomeUtente=s.atleta"
+					+ " where u.nomeUtente='"+utente+"'&&  gm.nome = '"+muscolo+"' && rc.data >= '"+inizio+"' && rc.data <= '"+fine+"' order by e.nome, rc.data";
+		}
+		else if (!muscolo.equals("vuoto") && inizio.equals("vuoto") && fine.equals("vuoto")) //solo filtro muscolo attivo 
+		{
+			qr = "select e.nome, rc.peso from esercizio e join registrazione_carico rc on rc.idEsercizio=e.id"
+					+ " join gruppo_muscolare gm on gm.id=e.muscolo join scheda s on s.id=e.scheda join utente u on u.nomeUtente=s.atleta"
+					+ " where u.nomeUtente='"+utente+"' && gm.nome = '"+muscolo+"' order by e.nome, rc.data";
+		}
+		else if (muscolo.equals("vuoto") && !inizio.equals("vuoto") && !fine.equals("vuoto")) //solo filtro periodo attivo
+		{
+			qr = "select e.nome, rc.peso from esercizio e join registrazione_carico rc on rc.idEsercizio=e.id"
+					+ " join scheda s on s.id=e.scheda join utente u on u.nomeUtente=s.atleta"
+					+ " where u.nomeUtente='"+utente+"' && rc.data >= '"+inizio+"' && rc.data <= '"+fine+"' order by e.nome, rc.data";
+		}
+		else //nessun filtro attivo 
+		{
+			qr = "select e.nome, rc.peso from esercizio e join registrazione_carico rc on rc.idEsercizio=e.id"
+					+ " join scheda s on s.id=e.scheda join utente u on u.nomeUtente=s.atleta"
+					+ " where u.nomeUtente='"+utente+"' order by e.nome, rc.data";
+		}
+		
+		System.out.println(qr);
+		return dbCom.select(qr);
+	}
+	
+	private void fetchDatiClassifica(ResultSet res, Vector<String> esercizi, Vector<Double> aumentoPerc ) //calcola l aumento percentuale per ogni esercizio e smista l esercizio con il rispettivo aumentoi percentuale nei rispettivi vettori
+	{
+		String nomeEs = "";
+		double lastCarico = -1.0; //conmtiene uno alla volta l utlimo carico di ogni esercizio
+		double firstCarico =  -1.0 ; //contiene uno alla volta il primo carico registrato di ogni ese4rcizo
+		try {
+			if(res.isBeforeFirst())
+			{
+				
+				while(res.next()) //scorro il result set 
+				{
+					if(res.getRow() == 1) //se e' l primo record allora sicuro e' la prima volta che incontro l esercizio quindi sicuro e' il carico piu grande
+					{
+						nomeEs = res.getString(1);
+						lastCarico = res.getDouble(2);
+					}
+					else
+					{
+						if(nomeEs.equals(res.getString(1))) //allora e' una seconda registrazione carico dello stesso esercizio e quindi potrebbe essere il primo carivco
+						{
+							firstCarico = res.getDouble(2);
+						}
+						else //sono in un nuovo esercizio quindi posso calcolare la progressione del vecchio esercizio, memorizzarla e passare al nuovo esercizio
+						{
+							//calcolo e registro progressione e nome 
+							if(firstCarico == -1.0) // vuol dire che di quell esercizio c' e una sola registrazione carico che vale sia come prima sia come ultima
+								firstCarico = lastCarico;
+							getProgressioneAndSave(nomeEs, firstCarico, lastCarico, esercizi, aumentoPerc);
+							//passo al nuovo esercizio 
+							nomeEs = res.getString(1);
+							lastCarico = res.getDouble(2);
+						}
+					}
+				}
+				
+				//per l ultiomo esercizio del set devo lavorare fuori dal while 
+				
+				//calcolo e registro progressione e nome 
+				if(firstCarico == -1.0) // vuol dire che di quell esercizio c' e una sola registrazione carico che vale sia come prima sia come ultima
+					firstCarico = lastCarico;
+				
+				getProgressioneAndSave(nomeEs, firstCarico, lastCarico, esercizi, aumentoPerc);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void sendDatiClassificaEsercizi(Vector<String> esercizi, Vector<Double> aumentoPerc)
+	{
+		while(aumentoPerc.size() > 0)
+		{
+			findMag_Send( aumentoPerc,esercizi);
+		}
+		
+		sendMsg("!");
+	}
+	
+	private void findMag_Send(Vector<Double> aumentoPerc, Vector<String> esercizi)
+	{
+		double mag = -20000000000.00;
+		int pos = 0;
+		for(int cont1 = 0 ; cont1 < aumentoPerc.size() ; cont1++) //scorre l'array, trova il maggiore, lo invia e lo toglie dal vettore
+		{
+			if(aumentoPerc.elementAt(cont1) > mag)
+			{
+				mag = aumentoPerc.elementAt(cont1);
+				pos = cont1;
+			}
+		}
+		
+		System.out.println(aumentoPerc.toString());
+		System.out.println(esercizi.toString());
+		System.out.println();
+		
+		aumentoPerc.remove(pos);//rimuovo l elemento dal vettore
+		
+		//invio nome e valore 
+		sendMsg(esercizi.elementAt(pos));
+		esercizi.remove(pos);
+		sendMsg(Double.toString(mag));
+		
+		System.out.println(aumentoPerc.toString());
+		System.out.println(esercizi.toString());
+	}
+	
+	private void getProgressioneAndSave(String nome, double first , double last, Vector<String> esercizi, Vector<Double> aumentoPerc )
+	{
+		Double progressione = ( (last - first) / first ) * 100; //calcolo l aumento percentuale del carico
+		//memorizzo l esercizio ed il rispettivo aumentoi percentuale
+		esercizi.add(nome);
+		aumentoPerc.add(progressione);
 	}
 	
 	private void fetchAndSend(ResultSet res)
